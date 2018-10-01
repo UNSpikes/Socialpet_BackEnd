@@ -9,4 +9,8 @@ class User < ApplicationRecord
 	validates :city, length: { maximum: 85, too_long: "Se permiten máximo %´{count} caracteres" }
 	validates :password, length: { in: 6..16, wrong_lenght: "Se permiten máximo %´{count} caracteres" }
 	validates :email, length: { maximum: 100, too_long: "Se permiten máximo %´{count} caracteres" }
+	has_many :dogs
+    has_many :blogs
+	has_many :comments
+	has_one :preference
 end
