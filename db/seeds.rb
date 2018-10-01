@@ -33,16 +33,16 @@ end
 
 10.times do 
 	Blog.create([{
-		name: Faker::Hacker.abbreviation,
+		title: Faker::Hacker.abbreviation,
 		date: Faker::Time.backward(10),
-		additional_info: Faker::Hacker.say_something_smart,
+		content: Faker::Hacker.say_something_smart,
 		num_likes: Faker::Number.between(0,300)
 	}])
 end
 
 10.times do 
 	Breed.create([{
-		bread_type: Faker::Dog.breed
+		breed_type: Faker::Dog.breed
 	}])
 end
 

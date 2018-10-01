@@ -128,8 +128,8 @@ ActiveRecord::Schema.define(version: 2018_10_01_045918) do
   create_table "users", force: :cascade do |t|
     t.string "name", limit: 100, null: false
     t.string "last_name", limit: 100, null: false
-    t.integer "age", limit: 2
-    t.string "phone_number", limit: 20
+    t.integer "age", limit: 3
+    t.string "phone_number", limit: 20, null: false
     t.text "additional_info", limit: 5000
     t.string "country", limit: 56
     t.string "city", limit: 85
