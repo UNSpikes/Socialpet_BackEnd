@@ -25,7 +25,7 @@ end
 	Dog.create([{
 		name: Faker::Name.first_name,
 		age: Faker::Number.between(10,20),
-		sex: "M"
+		sex: "M",
 		description: Faker::Hacker.say_something_smart,
 		interests: Faker::Number.between(1,4),
 	}])
