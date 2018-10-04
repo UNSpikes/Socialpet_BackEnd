@@ -1,2 +1,4 @@
-class ApplicationController < ActionController::Base
+# API
+# fgmendez
+class ApplicationController < ActionController::API
 end

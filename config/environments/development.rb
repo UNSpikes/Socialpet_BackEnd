@@ -1,6 +1,14 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # API
+  # fgmendezg
+  # Configura el formato utilizado en las respuestas cuando se producen en el modo de 
+  # desarrollo.
+  # :default / Para representar una pagina con información de depuración 
+  # :api / Para representar la informacion de depuracion conservando el formato de respuesta
+  config.debug_exception_response_format = :api
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
