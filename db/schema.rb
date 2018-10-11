@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_08_224527) do
+ActiveRecord::Schema.define(version: 2018_10_11_001344) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title", limit: 100, null: false
@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 2018_10_08_224527) do
     t.boolean "like_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "dog_id"
-    t.index ["dog_id"], name: "index_likes_on_dog_id"
   end
 
   create_table "locations", force: :cascade do |t|
