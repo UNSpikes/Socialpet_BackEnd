@@ -28,6 +28,8 @@ end
 		sex: "M",
 		description: Faker::Hacker.say_something_smart,
 		interests: Faker::Number.between(1,4),
+		user_id: Faker::Number.between(1,10),
+		breed_id: Faker::Number.between(1,10)
 	}])
 end
 

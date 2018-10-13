@@ -41,8 +41,14 @@ ActiveRecord::Schema.define(version: 2018_10_11_001344) do
     t.string "sex", limit: 1, null: false
     t.text "description", limit: 5000, null: false
     t.integer "interests", limit: 1, null: false
+    t.integer "user_id", null: false
+    t.integer "breed_id"
+    t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["breed_id"], name: "index_dogs_on_breed_id"
+    t.index ["location_id"], name: "index_dogs_on_location_id"
+    t.index ["user_id"], name: "index_dogs_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|

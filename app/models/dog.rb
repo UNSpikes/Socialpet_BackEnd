@@ -10,6 +10,15 @@
 #  sex         :string(1)        not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  breed_id    :integer
+#  location_id :integer
+#  user_id     :integer          not null
+#
+# Indexes
+#
+#  index_dogs_on_breed_id     (breed_id)
+#  index_dogs_on_location_id  (location_id)
+#  index_dogs_on_user_id      (user_id)
 #
 
 class Dog < ApplicationRecord
