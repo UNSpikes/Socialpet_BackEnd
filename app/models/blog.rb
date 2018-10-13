@@ -5,6 +5,6 @@ class Blog < ApplicationRecord
 	belongs_to :user
     has_many :photo_galeries, as: :imageable
     belongs_to :tag
-    belongs_to :location
+    belongs_to :location, optional: true
     has_many :comment
 end

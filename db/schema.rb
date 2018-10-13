@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_001344) do
+ActiveRecord::Schema.define(version: 2018_10_13_223429) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title", limit: 100, null: false
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 2018_10_11_001344) do
     t.binary "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "location_id"
+    t.integer "user_id"
+    t.integer "tag_id"
+    t.index ["location_id"], name: "index_blogs_on_location_id"
+    t.index ["tag_id"], name: "index_blogs_on_tag_id"
+    t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
   create_table "breeds", force: :cascade do |t|
@@ -33,6 +39,12 @@ ActiveRecord::Schema.define(version: 2018_10_11_001344) do
     t.datetime "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "blog_id"
+    t.integer "publication_id"
+    t.index ["blog_id"], name: "index_comments_on_blog_id"
+    t.index ["publication_id"], name: "index_comments_on_publication_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "dogs", force: :cascade do |t|
@@ -43,6 +55,12 @@ ActiveRecord::Schema.define(version: 2018_10_11_001344) do
     t.integer "interests", limit: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "breed_id"
+    t.integer "location_id"
+    t.index ["breed_id"], name: "index_dogs_on_breed_id"
+    t.index ["location_id"], name: "index_dogs_on_location_id"
+    t.index ["user_id"], name: "index_dogs_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -50,6 +68,12 @@ ActiveRecord::Schema.define(version: 2018_10_11_001344) do
     t.boolean "like_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "dog_id"
+    t.integer "match_id"
+    t.integer "user_id"
+    t.index ["dog_id"], name: "index_likes_on_dog_id"
+    t.index ["match_id"], name: "index_likes_on_match_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -72,6 +96,10 @@ ActiveRecord::Schema.define(version: 2018_10_11_001344) do
     t.datetime "updated_at", null: false
     t.integer "imageable_id"
     t.string "imageable_type"
+    t.integer "dog_id"
+    t.integer "blog_id"
+    t.index ["blog_id"], name: "index_photo_galeries_on_blog_id"
+    t.index ["dog_id"], name: "index_photo_galeries_on_dog_id"
   end
 
   create_table "preferences", force: :cascade do |t|
@@ -80,6 +108,8 @@ ActiveRecord::Schema.define(version: 2018_10_11_001344) do
     t.integer "max_distance", limit: 4, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_preferences_on_user_id"
   end
 
   create_table "publications", force: :cascade do |t|
@@ -87,6 +117,10 @@ ActiveRecord::Schema.define(version: 2018_10_11_001344) do
     t.integer "num_likes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "dog_id"
+    t.index ["dog_id"], name: "index_publications_on_dog_id"
+    t.index ["user_id"], name: "index_publications_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
