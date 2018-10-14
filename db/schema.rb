@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_14_111616) do
+ActiveRecord::Schema.define(version: 2018_10_14_214840) do
+
+  create_table "blog_tag_mediators", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "blog_id"
+    t.integer "tag_id"
+    t.index ["blog_id"], name: "index_blog_tag_mediators_on_blog_id"
+    t.index ["tag_id"], name: "index_blog_tag_mediators_on_tag_id"
+  end
 
   create_table "blogs", force: :cascade do |t|
     t.string "title", limit: 100, null: false
@@ -22,9 +31,7 @@ ActiveRecord::Schema.define(version: 2018_10_14_111616) do
     t.datetime "updated_at", null: false
     t.integer "location_id"
     t.integer "user_id"
-    t.integer "tag_id"
     t.index ["location_id"], name: "index_blogs_on_location_id"
-    t.index ["tag_id"], name: "index_blogs_on_tag_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
