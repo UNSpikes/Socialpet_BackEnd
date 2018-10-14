@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_13_223429) do
+ActiveRecord::Schema.define(version: 2018_10_14_111616) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title", limit: 100, null: false
@@ -77,10 +77,11 @@ ActiveRecord::Schema.define(version: 2018_10_13_223429) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string "punto", null: false
     t.string "city", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "longitud", limit: 20, null: false
+    t.string "latitud", limit: 20, null: false
   end
 
   create_table "matches", force: :cascade do |t|
@@ -91,15 +92,17 @@ ActiveRecord::Schema.define(version: 2018_10_13_223429) do
   end
 
   create_table "photo_galeries", force: :cascade do |t|
-    t.binary "image"
+    t.string "image", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "imageable_id"
     t.string "imageable_type"
     t.integer "dog_id"
     t.integer "blog_id"
+    t.integer "user_id"
     t.index ["blog_id"], name: "index_photo_galeries_on_blog_id"
     t.index ["dog_id"], name: "index_photo_galeries_on_dog_id"
+    t.index ["user_id"], name: "index_photo_galeries_on_user_id"
   end
 
   create_table "preferences", force: :cascade do |t|

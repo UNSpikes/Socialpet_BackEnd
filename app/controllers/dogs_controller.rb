@@ -10,7 +10,6 @@ class DogsController < ApplicationController
 
     # GET show por id del dog
     def show
-        #@dogs = Dog.where( id: params[:id], user_id: params[:user_id] )
         @dogs = Dog.where( id: params[:id] )
         respond_to do |format|
             format.json { render json: @dogs, status:200 }
