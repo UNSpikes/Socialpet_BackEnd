@@ -69,6 +69,6 @@ class UsersController < ApplicationController
         end
     end
 
-    # Eliminar comentario
+    
 end
 
