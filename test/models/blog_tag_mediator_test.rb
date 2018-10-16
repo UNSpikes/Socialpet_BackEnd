@@ -1,18 +1,22 @@
 # == Schema Information
 #
-# Table name: locations
+# Table name: blog_tag_mediators
 #
 #  id         :integer          not null, primary key
-#  city       :string           not null
-#  latitud    :string(20)       not null
-#  longitud   :string(20)       not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  blog_id    :integer
+#  tag_id     :integer
+#
+# Indexes
+#
+#  index_blog_tag_mediators_on_blog_id  (blog_id)
+#  index_blog_tag_mediators_on_tag_id   (tag_id)
 #
 
 require 'test_helper'
 
-class LocationTest < ActiveSupport::TestCase
+class BlogTagMediatorTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

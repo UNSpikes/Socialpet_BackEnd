@@ -12,7 +12,7 @@
 #  updated_at  :datetime         not null
 #  breed_id    :integer
 #  location_id :integer
-#  user_id     :integer          not null
+#  user_id     :integer
 #
 # Indexes
 #

@@ -12,7 +12,7 @@
 #  updated_at  :datetime         not null
 #  breed_id    :integer
 #  location_id :integer
-#  user_id     :integer          not null
+#  user_id     :integer
 #
 # Indexes
 #
@@ -31,7 +31,7 @@ class Dog < ApplicationRecord
 	belongs_to :user
     belongs_to :breed
     has_many :publications 
-    belongs_to :photo_galery
-    belongs_to :location
+    has_one :photo_galery
+    belongs_to :location, optional: true
     has_many :likes
 end
