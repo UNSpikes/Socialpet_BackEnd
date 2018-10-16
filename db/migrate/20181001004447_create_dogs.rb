@@ -9,6 +9,11 @@ class CreateDogs < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+
+    add_reference :dogs, :user, foreign_key: true
+    add_reference :dogs, :breed, foreign_key: true
+    add_reference :dogs, :location, foreign_key: true
+    
   end
 end
 

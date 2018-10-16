@@ -7,5 +7,8 @@ class CreatePreferences < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+
+    add_reference :preferences, :user, foreign_key: true
+    
   end
 end

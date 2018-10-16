@@ -8,5 +8,9 @@ class CreateBlogs < ActiveRecord::Migration[5.2]
       t.binary :image
       t.timestamps
     end
+
+    add_reference :blogs, :location, foreign_key: true
+    add_reference :blogs, :user, foreign_key: true
+
   end
 end
