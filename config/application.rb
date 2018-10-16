@@ -10,7 +10,7 @@ module IS2SocialpetBe
   class Application < Rails::Application
     
     # rack-cors
-    config.middleware.insert_before 0, Rack::Cors do
+    config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'
         resource '*', headers: :any, methods: :any
