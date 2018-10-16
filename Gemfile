@@ -74,3 +74,5 @@ group :production do
   # es la que maneja Heroku
   gem 'pg'
 end
+
+gem 'rack-cors', require: 'rack/cors'
