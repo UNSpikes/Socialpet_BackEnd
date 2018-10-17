@@ -1,5 +1,5 @@
 # Caracteristicas
-
+# Sprint 1
 1.1 Andres Aranguren y Fredy Méndez
 1.2 David Rico
 1.3 Andres Aranguren
