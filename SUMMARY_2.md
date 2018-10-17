@@ -14,8 +14,8 @@ Heroku:
 https://socialped-back-unal.herokuapp.com/
 
 1 David Rico
-2 David Rico
+2 David Rico (Por terminar)
 3 Fredy Méndez
-4 Andres Aranguren
+4 Andres Aranguren ( por Terminar)
 5 Todo back
 6 Fredy Mendez
