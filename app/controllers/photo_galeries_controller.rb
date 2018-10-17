@@ -3,9 +3,7 @@ class PhotoGaleriesController < ApplicationController
     # Obtiene todas la imagenes guardadas
     def index
         @photo_galeries = PhotoGalery.all
-        respond_to do |format|
-            format.json { render json: @photo_galeries, status:200 }
-        end
+        render json: @photo_galeries
     end
 
     # GET

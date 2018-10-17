@@ -2,9 +2,7 @@ class TagsController < ApplicationController
     # GET
     def index
         @tags = Tag.all
-        respond_to do |format|
-            format.json { render json: @tags, status:200 }
-        end
+        render json: @tags
     end
 
     # GET show

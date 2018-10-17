@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_14_214840) do
+ActiveRecord::Schema.define(version: 2018_10_14_212826) do
 
   create_table "blog_tag_mediators", force: :cascade do |t|
     t.datetime "created_at", null: false

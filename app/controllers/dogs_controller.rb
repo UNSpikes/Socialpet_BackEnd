@@ -3,9 +3,7 @@ class DogsController < ApplicationController
     # GET
     def index
         @dogs = Dog.all
-        respond_to do |format|
-            format.json { render json: @dogs, status:200 }
-        end
+        render json: @dogs
     end
 
     # GET show por id del dog

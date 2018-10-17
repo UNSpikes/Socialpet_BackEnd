@@ -2,9 +2,7 @@ class BreedsController < ApplicationController
     # GET
     def index
         @breeds = Breed.all
-        respond_to do |format|
-            format.json { render json: @breeds, status:200 }
-        end
+        render json: @breeds
     end
 
     # POST

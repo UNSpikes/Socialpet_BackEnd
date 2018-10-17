@@ -2,9 +2,7 @@ class UsersController < ApplicationController
     # GET
     def index
         @users = User.all
-        respond_to do |format|
-            format.json {render json: @users, status:200}
-        end
+        render json: @users
     end
 
     # POST

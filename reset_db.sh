@@ -12,4 +12,4 @@ echo "Migrating"
 rails db:migrate
 
 echo "Seeding"
-rails db:seed --trace
+rails db:seed
