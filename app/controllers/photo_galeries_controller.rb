@@ -48,7 +48,7 @@ class PhotoGaleriesController < ApplicationController
 
     # Argumentos de createdogid
     def params_dog
-        params.permit( :image, :dog_id, :user_id )
+        params.permit( :image, :dog_id, :user_id)
     end
 
     # DELETE

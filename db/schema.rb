@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_10_14_212826) do
     t.datetime "date", null: false
     t.text "content", limit: 5000, null: false
     t.integer "num_likes"
-    t.binary "image"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "location_id"
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 2018_10_14_212826) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string "longitud", limit: 20, null: false
-    t.string "latitud", limit: 20, null: false
+    t.float "longitude", null: false
+    t.float "latitude", null: false
     t.string "city", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

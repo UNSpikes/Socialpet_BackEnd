@@ -5,7 +5,7 @@ class CreateBlogs < ActiveRecord::Migration[5.2]
       t.datetime :date, null: false
       t.text :content, limit: 5000, null: false
       t.integer :num_likes
-      t.binary :image
+      t.string :image
       t.timestamps
     end
 

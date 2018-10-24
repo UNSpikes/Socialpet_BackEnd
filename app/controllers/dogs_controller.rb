@@ -39,7 +39,7 @@ class DogsController < ApplicationController
     # Parametros recibidos para la creacion de un dog nuevo
     # en el metodo create
     def params_dog
-        params.permit( :name, :age, :sex, :description, :interests, :user_id, :breed_id )
+        params.permit( :name, :age, :sex, :description, :interests, :user_id, :breed_id, :location_id )
     end
 
     # PATCH
