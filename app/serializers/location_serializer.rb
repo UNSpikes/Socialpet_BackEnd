@@ -11,7 +11,7 @@
 #
 
 class LocationSerializer < ActiveModel::Serializer
-  attributes :id, :city, :longitud, :latitud
+  attributes :id, :city, :longitude, :latitude
 
   has_one :dog
   has_one :blog

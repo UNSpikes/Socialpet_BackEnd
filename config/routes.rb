@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   # Para Users
-  resources :users
+  resources :users do
+    collection do
+      get '/info/:id', to: 'users#get_info'
+    end
+  end
 
   # Para Dogs
   resources :dogs
@@ -35,4 +39,5 @@ Rails.application.routes.draw do
 
   resources :blogs
   resources :locations
+  resources :blog_tag_mediator
 end

@@ -1,13 +1,13 @@
 class BlogTagMediatorController < ApplicationController
     before_action :set_blogTag, only: %i[show update destroy]
 
-    # GET /blogTags
+    # GET /blog_tag_mediator
     def index
         @blogTags = BlogTagMediator.all
         render json: @blogTags, include: []
     end
 
-    # GET /blogTags/:id
+    # GET /blog_tag_mediator/:id
     def show
         if @blogTag.errors.any?
             render json: @blogTag.errors.messages

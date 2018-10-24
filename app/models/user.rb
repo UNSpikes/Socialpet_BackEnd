@@ -32,4 +32,26 @@ class User < ApplicationRecord
 	has_many :comments
 	has_one :preference
 
+	def self.items(p, per_p)
+		paginate(page: p, per_page: per_p)
+	end
+
+	def get_dogs()
+		dogs.select(:id, :name, :sex)
+	end
+
+	def get_blogs()
+		blogs.select(:id, :title, :image)
+	end
+
+	# QUERIES FOR SEARCHING
+	  
+	def self.search_by_name(keywords)
+		search = "upper(name) LIKE ? or upper(last_name) LIKE ? "
+		search += "or upper(concat(name, ' ', last_name)) LIKE ? "
+		keywords = "%#{keywords}%"
+		where(search, keywords, keywords, keywords)
+		  .order(name: :asc, last_name: :asc)
+	end
+
 end

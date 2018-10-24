@@ -67,6 +67,16 @@ class UsersController < ApplicationController
         end
     end
 
+    def get_info
+        usr = User.find(params[:id])
+        dogs = usr.get_dogs()
+        blogs = usr.get_blogs()
+        render json: {
+            user: usr,
+            dogs: dogs,
+            blogs: blogs
+        }
+    end
     
 end
 
