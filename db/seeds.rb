@@ -23,7 +23,7 @@ end
 
 10.times do 
 	Breed.create(
-		breed_type: Faker::Dog.breed
+		breed_type: Faker::Dog.unique.breed
 	)
 end
 

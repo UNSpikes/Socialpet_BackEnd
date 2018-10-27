@@ -43,8 +43,6 @@ class User < ApplicationRecord
 	def get_blogs()
 		blogs.select(:id, :title, :image)
 	end
-
-	# QUERIES FOR SEARCHING
 	  
 	def self.search_by_name(keywords)
 		search = "upper(name) LIKE ? or upper(last_name) LIKE ? "

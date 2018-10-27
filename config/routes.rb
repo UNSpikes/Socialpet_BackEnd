@@ -1,26 +1,20 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
-  # Para Users
-  resources :users do
-    collection do
-      get '/info/:id', to: 'users#get_info'
-    end
+  resources :blog_tag_mediator
+
+  resources :blogs
+
+  resources :breeds do
+    get 'num_of_dogs', to: 'breeds#num_of_dogs'
   end
 
-  # Para Dogs
-  resources :dogs
-  get '/dogs/showcomplete/:id/:user_id', to: 'dogs#showcomplete'
-  delete '/dogs/destroycomplete/:id/:user_id', to: 'dogs#destroycomplete'
+  resources :dogs do
+    collection do
+    end
+    #get 'info', to: 'dogs#get_info'
+  end
 
-  # Para Breeds
-  resources :breeds, except: [:update]
-  delete '/breeds/deletename/:breed_type', to: 'breeds#destroyforname'
-  get '/breeds/showname/:breed_type', to: 'breeds#showforname'
-
-  # Para Tags
-  resources :tags
-  delete '/tags/deletename/:tag_name', to: 'tags#destroyforname'
+  resources :locations
 
   # Para photo_galeries
   resources :photo_galeries, only: [:index, :show, :destroy]
@@ -29,15 +23,19 @@ Rails.application.routes.draw do
   post '/photo_galeries/:image/:dog_id/:user_id', to: 'photo_galeries#createdogid'
   delete '/photo_galeries/:dog_id/:user_id', to: 'photo_galeries#destroydogidall'
   #delete '/photo_galeries/:id', to: 'photo_galeries#destroydogid'
-
   # con blog
   get '/photo_galeries/showblogid/:id/:blog_id', to: 'photo_galeries#showblogid'
   get '/photo_galeries/showblogid/:blog_id', to: 'photo_galeries#showblogidall'
   post '/photo_galeries/:image/:blog_id', to: 'photo_galeries#createblogid'
   delete '/photo_galeries/:blog_id', to: 'photo_galeries#destroyblogid'
 
+  resources :tags
 
-  resources :blogs
-  resources :locations
-  resources :blog_tag_mediator
+  resources :users do
+    collection do
+    end
+    get 'info', to: 'users#get_info'
+    get 'num_of_dogs', to: 'users#num_of_dogs'
+  end
+
 end

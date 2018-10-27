@@ -1,77 +1,56 @@
 class TagsController < ApplicationController
-    # GET
+    before_action :set_tag, only: %i[show update destroy]
+
+    # GET /tags
     def index
         @tags = Tag.all
-        render json: @tags
+        render json: @tags, include: []
     end
 
-    # GET show
+    # GET /tags/:id
     def show
-        @tags = Tag.find(params[:id])
-        respond_to do |format|
-            format.json {render json: @tags, status:201}
+        if @tag.errors.any?
+            render json: @tag.errors.messages
+        else
+            render json: @tag, include: []
         end
     end
-    
+
     # POST
     def create
-        @tags = Tag.new( params_tags )
-        if @tags.save
-            respond_to do |format|
-                format.json { render json: @tags, status:201 }
-            end
+        @tag = Tag.new(tag_params)
+        if @tag.save
+            render json: @tag, include: []
         else
-            respond_to do |format|
-                format.json { render json: @tags.errors, status:201 }
-            end
+            render json: @tag.errors
         end
     end
-    
-    # Parametros necesarios para create un nuevo tag
-    def params_tags
-        params.permit( :tag_name )
-    end
 
-    # PATCH and PUT
+    # PATCH/PUT
     def update
-        @tag = Tag.find( params[:id] )
-        if @tag.update_attributes( params_tags )
-            respond_to do |format|
-                format.json { render json: @tag, status:200 }
-            end
+        if @tag.update(tag_params)
+            render json: @tag, include: []
         else
-            respond_to do |format|
-                format.json { render json: @tag.errors, status:200 }
-            end
+            render json: @tag.errors
         end
     end
 
     # DELETE
     def destroy
-        @tag = Tag.find(params[:id])
         if @tag.destroy
-            respond_to do |format|
-                format.json { render json: @tag, status:200 }
-            end
+            render json: @tag, include: []
         else
-            respond_to do |format|
-                format.json { render json: @tag.errors, status:200 }
-            end
-        end
-    end
-    
-    # DELETE for name
-    def destroyforname
-        @tag = Tag.where( tag_name: params[:tag_name] )
-        if @tag.destroy_all
-            respond_to do |format|
-                format.json { render json: @tag, status:200 }
-            end
-        else
-            respond_to do |format|
-                format.json { render json: @tag.errors, status:200 }
-            end
+            render json: @tag.errors
         end
     end
 
+    private
+
+    def set_tag
+        @tag = Tag.find(params[:id])
+    end
+
+    def tag_params
+        params.require(:tag).permit( :tag_name )
+    end
 end

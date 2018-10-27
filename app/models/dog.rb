@@ -22,7 +22,7 @@
 #
 
 class Dog < ApplicationRecord
-	validates :name, :age,:sex, :description, :interests, presence: true
+	validates :name, :age, :sex, :description, :interests, presence: true
 	validates :name, length: { maximum: 100, too_long:"Pueden haber unicamente %´{count} caracteres" }
 	validates :age, length: { in: 1..3, too_long: "Se permiten máximo %´{count} caracteres" }
 	validates :sex, length: { is: 1, too_long: "Se permiten máximo %´{count} caracteres" }
@@ -33,5 +33,26 @@ class Dog < ApplicationRecord
     has_many :publications 
     has_one :photo_galery
     belongs_to :location, optional: true
-    has_many :likes
+	has_many :likes
+	
+	def self.items(p)
+		paginate(page: p, per_page: 12)
+	end
+
+	#def get_owner()
+	#	user.select(:id, :name, :last_name, :phone_number, :email)
+	#end
+
+	#def get_breed()
+	#	breed.select(:id, :breed_type)
+	#end
+
+	def self.num_dogs_by_breed(breed_id)
+		joins(:breed).where("breeds.id" => breed_id).count if breed_id.present?
+	end
+
+	def self.num_dogs_by_user(user_id)
+		joins(:user).where("users.id" => user_id).count if user_id.present?
+	end
+
 end
