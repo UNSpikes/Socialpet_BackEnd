@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_14_214840) do
+ActiveRecord::Schema.define(version: 2018_10_27_142729) do
 
   create_table "blog_tag_mediators", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(version: 2018_10_14_214840) do
     t.string "breed_type", limit: 30, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "certificados", force: :cascade do |t|
+    t.string "ruta", limit: 300, null: false
+    t.string "tipo", limit: 45, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "dog_id"
+    t.index ["dog_id"], name: "index_certificados_on_dog_id"
+    t.index ["user_id"], name: "index_certificados_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|

@@ -27,5 +27,6 @@ class Dog < ApplicationRecord
     has_many :publications 
     has_one :photo_galery
     belongs_to :location, optional: true
-    has_many :likes
+	has_many :likes
+	has_many :certificados
 end

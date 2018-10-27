@@ -76,3 +76,6 @@ group :production do
 end
 
 gem 'rack-cors', require: 'rack/cors'
+
+# Para Cargar archivos carrierwave
+gem 'carrierwave', '~> 1.0'
