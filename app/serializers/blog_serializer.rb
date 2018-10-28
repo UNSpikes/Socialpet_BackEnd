@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: blogs
+#
+#  id          :integer          not null, primary key
+#  content     :text(5000)       not null
+#  date        :datetime         not null
+#  image       :string
+#  num_likes   :integer
+#  title       :string(100)      not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  location_id :integer
+#  user_id     :integer
+#
+# Indexes
+#
+#  index_blogs_on_location_id  (location_id)
+#  index_blogs_on_user_id      (user_id)
+#
+
 class BlogSerializer < ActiveModel::Serializer
   attributes :id, :title, :date, :content, :num_likes, :image, :location_id, :user_id
 

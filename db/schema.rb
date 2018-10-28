@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_14_214840) do
+ActiveRecord::Schema.define(version: 2018_10_14_212826) do
 
   create_table "blog_tag_mediators", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_10_14_214840) do
     t.datetime "date", null: false
     t.text "content", limit: 5000, null: false
     t.integer "num_likes"
-    t.binary "image"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "location_id"
@@ -84,11 +84,11 @@ ActiveRecord::Schema.define(version: 2018_10_14_214840) do
   end
 
   create_table "locations", force: :cascade do |t|
+    t.float "longitude", null: false
+    t.float "latitude", null: false
     t.string "city", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "longitud", limit: 20, null: false
-    t.string "latitud", limit: 20, null: false
   end
 
   create_table "matches", force: :cascade do |t|
@@ -100,10 +100,10 @@ ActiveRecord::Schema.define(version: 2018_10_14_214840) do
 
   create_table "photo_galeries", force: :cascade do |t|
     t.string "image", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "imageable_id"
     t.string "imageable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "dog_id"
     t.integer "blog_id"
     t.integer "user_id"

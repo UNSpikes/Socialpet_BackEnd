@@ -1,74 +1,78 @@
 class UsersController < ApplicationController
-    # GET
+    before_action :set_user, only: %i[show update destroy]
+
+    # GET /users
     def index
         @users = User.all
-        respond_to do |format|
-            format.json {render json: @users, status:200}
+        render json: @users, include: []
+    end
+
+    # GET /users/:id
+    def show
+        if @user.errors.any?
+            render json: @user.errors.messages
+        else
+            render json: @user, include: []
         end
     end
 
     # POST
     def create
-        @users = User.new(params_user)
-        if @users.save
-            respond_to do |format|
-                format.json {render json: @users, status:201}
-            end
+        @user = User.new(user_params)
+        if @user.save
+            render json: @user, include: []
         else
-            respond_to do |format|
-                format.json {render json: @users.errors, status:201}
-            end
+            render json: @user.errors
         end
     end
 
-    # Parametros recibidos para la creacion de un usuario nuevo
-    # en el metodo create
-    def params_user
-        params.permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
-    end
-    
-    # GET show
-    def show
-        @users = User.find(params[:id])
-        respond_to do |format|
-            format.json {render json: @users, status:201}
-        end
-    end
-    
-    # PATCH 
-    # Modifica el password
+    # PATCH/PUT
     def update
-        @users = User.find(params[:id])
-        if @users.update_attributes(params_patch_user)
-            respond_to do |format|
-                format.json {render json: @users, status:202}
-            end
+        if @user.update(user_params)
+            render json: @user, include: []
         else
-            respond_to do |format|
-                format.json {render json: @users.errors, status:202}
-            end
+            render json: @user.errors
         end
-    end
-    
-    # Parametros que recibe el PATCH en el metodo update
-    def params_patch_user
-        params.permit( :password )
     end
 
     # DELETE
     def destroy
-        @user = User.find(params[:id])
         if @user.destroy
-            respond_to do |format|
-                format.json {render json: @user, status:200}
-            end
+            render json: @user, include: []
         else
-            respond_to do |format|
-                format.json {render json: @user.errors, status:200}
-            end
+            render json: @user.errors
         end
     end
 
-    
+    # /users/:user_id/info/
+    def get_info
+        usr = User.find(params[:user_id])
+        dogs = usr.get_dogs()
+        blogs = usr.get_blogs()
+        render json: {
+            user: usr,
+            dogs: dogs,
+            blogs: blogs
+        }
+    end
+
+    # /users/:user_id/num_of_dogs
+    def num_of_dogs
+        user_id = params[:user_id]
+        num = Dog.num_dogs_by_user(user_id)
+        render json: {
+            num_of_dogs: num
+        }
+    end
+
+    private
+
+    def set_user
+        @user = User.find(params[:id])
+    end
+
+    def user_params
+        params.require(:user).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
+    end
 end
 

@@ -8,54 +8,83 @@
 
 
 10.times do 
-	User.create([{
+	User.create(
 		name: Faker::Name.first_name,
 		last_name: Faker::Name.last_name,
-		age: Faker::Number.between(10,99),
+		age: Faker::Number.between(10, 100),
 		phone_number: Faker::PhoneNumber.cell_phone,
-		additional_info: Faker::Hacker.say_something_smart,
-		country: Faker::Hacker.say_something_smart,
-		city: Faker::Hacker.say_something_smart,
-		password: Faker::Hacker.say_something_smart,
+		additional_info: Faker::BackToTheFuture.quote,
+		country: Faker::Address.country,
+		city: Faker::Nation.capital_city,
+		password: Faker::Alphanumeric.alphanumeric(Faker::Number.between(6, 16)),
 		email: Faker::Internet.email
-	}])
+	)
 end
 
 10.times do 
-	Dog.create([{
-		name: Faker::Name.first_name,
-		age: Faker::Number.between(10,20),
+	Breed.create(
+		breed_type: Faker::Dog.unique.breed
+	)
+end
+
+10.times do
+	Location.create(
+		latitude: Float('4.62'+4.times.map{rand(10)}.join),
+		longitude: Float('-74.06'+4.times.map{rand(10)}.join),
+		city: Faker::Nation.capital_city
+	)
+end
+
+10.times do 
+	Dog.create(
+		name: Faker::Dog.name,
+		age: Faker::Number.between(0,20),
 		sex: "M",
-		description: Faker::Hacker.say_something_smart,
-		interests: Faker::Number.between(1,4),
-	}])
+		description: Faker::Friends.unique.quote,
+		interests: Faker::Number.between(0,9),
+		breed_id: Faker::Number.between(1,10),
+		user_id: Faker::Number.between(1,10),
+		location_id: Faker::Number.between(1,10)
+	)
 end
 
-10.times do 
-	Blog.create([{
-		title: Faker::Hacker.abbreviation,
+until Blog.count == 10 do
+	Blog.create(
+		title: Faker::VForVendetta.unique.quote,
+		content: Faker::VForVendetta.speech,
+		image: Faker::Alphanumeric.alphanumeric(20),
 		date: Faker::Time.backward(10),
-		content: Faker::Hacker.say_something_smart,
-		num_likes: Faker::Number.between(0,300)
-	}])
+		num_likes: Faker::Number.between(0,300),
+		user_id: Faker::Number.between(1,10),
+		location_id: Faker::Number.between(1,10)
+	)
 end
 
 10.times do 
-	Breed.create([{
-		breed_type: Faker::Dog.breed
-	}])
-end
-
-10.times do 
-	Comment.create([{
+	Comment.create(
 		content: Faker::Hacker.say_something_smart,
 		date: Faker::Time.backward(10)
-	}])
+	)
 end
 
-10.times do 
-	Comment.create([{
-		content: Faker::Hacker.say_something_smart,
-		date: Faker::Time.backward(10)
-	}])
+10.times do
+	Tag.create(
+		tag_name: Faker::Commerce.unique.department(1,false)
+	)
+end 
+
+10.times do
+	BlogTagMediator.create(
+		blog_id: Faker::Number.between(1,10),
+		tag_id: Faker::Number.between(1,10)
+	)
 end
+
+Faker::UniqueGenerator.clear
+p "Created #{User.count} users"
+p "Created #{Dog.count} dogs"
+p "Created #{Breed.count} breeds"
+p "Created #{Tag.count} tags"
+p "Created #{Location.count} locations"
+p "Created #{Blog.count} blogs"
+p "Created #{Comment.count} comments"

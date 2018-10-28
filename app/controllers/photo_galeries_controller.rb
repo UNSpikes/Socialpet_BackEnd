@@ -3,9 +3,7 @@ class PhotoGaleriesController < ApplicationController
     # Obtiene todas la imagenes guardadas
     def index
         @photo_galeries = PhotoGalery.all
-        respond_to do |format|
-            format.json { render json: @photo_galeries, status:200 }
-        end
+        render json: @photo_galeries
     end
 
     # GET
@@ -50,7 +48,7 @@ class PhotoGaleriesController < ApplicationController
 
     # Argumentos de createdogid
     def params_dog
-        params.permit( :image, :dog_id, :user_id )
+        params.permit( :image, :dog_id, :user_id)
     end
 
     # DELETE

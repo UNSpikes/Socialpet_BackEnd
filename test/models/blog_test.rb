@@ -3,15 +3,20 @@
 # Table name: blogs
 #
 #  id          :integer          not null, primary key
-#  title       :string(100)      not null
-#  date        :datetime         not null
 #  content     :text(5000)       not null
+#  date        :datetime         not null
+#  image       :string
 #  num_likes   :integer
-#  image       :binary
+#  title       :string(100)      not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  location_id :integer
 #  user_id     :integer
+#
+# Indexes
+#
+#  index_blogs_on_location_id  (location_id)
+#  index_blogs_on_user_id      (user_id)
 #
 
 require 'test_helper'
