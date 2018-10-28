@@ -38,4 +38,8 @@ Rails.application.routes.draw do
     get 'num_of_dogs', to: 'users#num_of_dogs'
   end
 
+  # Para certificados
+  resources :certificados, except: [:destroy]
+  delete '/certificados/delete/:id/:dog_id/:user_id', to: 'certificados#destroycertificado'
+  delete '/certificados/deleteall/:dog_id/:user_id', to: 'certificados#destroyall'
 end

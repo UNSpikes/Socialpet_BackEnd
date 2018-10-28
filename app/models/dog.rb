@@ -34,6 +34,7 @@ class Dog < ApplicationRecord
     has_one :photo_galery
     belongs_to :location, optional: true
 	has_many :likes
+	has_many :certificados
 	
 	def self.items(p)
 		paginate(page: p, per_page: 12)
