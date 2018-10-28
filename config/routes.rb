@@ -31,4 +31,9 @@ Rails.application.routes.draw do
   get '/photo_galeries/showblogid/:blog_id', to: 'photo_galeries#showblogidall'
   post '/photo_galeries/:image/:blog_id', to: 'photo_galeries#createblogid'
   delete '/photo_galeries/:blog_id', to: 'photo_galeries#destroyblogid'
+
+  # Para certificados
+  resources :certificados, except: [:destroy]
+  delete '/certificados/delete/:id/:dog_id/:user_id', to: 'certificados#destroycertificado'
+  delete '/certificados/deleteall/:dog_id/:user_id', to: 'certificados#destroyall'
 end

@@ -12,10 +12,13 @@
 #
 
 class Certificado < ApplicationRecord
+    # carrierwave en ruta
+    mount_uploader :ruta, RutaUploader 
+
     # Validaciones
     validates :ruta, :tipo, presence: true
-    validates :ruta, length: { maximum: 300, 
-        too_long: "%{count} caracteres es el maximo permitido para el campo ruta" }
+    #validates :ruta, length: { maximum: 300, 
+    #    too_long: "%{count} caracteres es el maximo permitido para el campo ruta" }
     validates :tipo, length: { maximum: 45, 
         too_long: "%{count} caracteres es el maximo permitido para le campo tipo" }
 
