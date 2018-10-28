@@ -5,7 +5,7 @@
 #  id          :integer          not null, primary key
 #  content     :text(5000)       not null
 #  date        :datetime         not null
-#  image       :string
+#  image       :binary
 #  num_likes   :integer
 #  title       :string(100)      not null
 #  created_at  :datetime         not null

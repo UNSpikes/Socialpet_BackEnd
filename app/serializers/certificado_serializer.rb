@@ -7,8 +7,13 @@
 #  tipo       :string(45)       not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer
 #  dog_id     :integer
+#  user_id    :integer
+#
+# Indexes
+#
+#  index_certificados_on_dog_id   (dog_id)
+#  index_certificados_on_user_id  (user_id)
 #
 
 class CertificadoSerializer < ActiveModel::Serializer
