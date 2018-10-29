@@ -59,4 +59,25 @@ class User < ApplicationRecord
 	                                                BCrypt::Engine.cost
 	  BCrypt::Password.create(string, cost: cost)
 	end
+
+	#Search user by mail
+	def self.find_by_email(email)
+		return User.find_by email: email
+	end
+
+	def self.create_google_usr(data)
+		newUsr = find_by email: data["email"]
+		if !newUsr
+			newUsr = create do |user|
+				user.name = data["name"]
+				user.last_name = ["last_name"]
+				user.email = data["email"]
+				user.password = data["google-authorized account"]
+				user.google_sign_up = true
+			end
+		end
+		return newUsr
+	end
+
+
 end
