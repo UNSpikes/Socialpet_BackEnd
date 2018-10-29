@@ -213,8 +213,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  annotate
   active_model_serializers (~> 0.10.0)
+  annotate
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)
