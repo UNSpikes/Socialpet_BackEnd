@@ -58,8 +58,8 @@ end
 		description: Faker::Friends.unique.quote,
 		interests: Faker::Number.between(0,9),
 		breed_id: Faker::Number.between(1,10),
-		user_id: Faker::Number.between(1,10),
-		location_id: Faker::Number.between(1,11)
+		user_id: Faker::Number.between(1,11),
+		location_id: Faker::Number.between(1,10)
 	)
 end
 
@@ -70,8 +70,8 @@ until Blog.count == 10 do
 		image: Faker::Alphanumeric.alphanumeric(20),
 		date: Faker::Time.backward(10),
 		num_likes: Faker::Number.between(0,300),
-		user_id: Faker::Number.between(1,10),
-		location_id: Faker::Number.between(1,11)
+		user_id: Faker::Number.between(1,11),
+		location_id: Faker::Number.between(1,10)
 	)
 end
 
