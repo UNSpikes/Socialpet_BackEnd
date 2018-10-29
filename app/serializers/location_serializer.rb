@@ -4,8 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  city       :string           not null
-#  latitud    :string(20)       not null
-#  longitud   :string(20)       not null
+#  latitude   :float            not null
+#  longitude  :float            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
