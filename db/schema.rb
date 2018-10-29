@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 2018_10_14_212826) do
     t.string "country", limit: 56
     t.string "city", limit: 85
     t.string "password", limit: 16, null: false
+    t.string "password_digest"
     t.string "email", limit: 100, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

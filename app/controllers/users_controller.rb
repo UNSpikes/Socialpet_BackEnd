@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+    before_action :authenticate_user, only: [:index, :show, :update, :destroy, :get_info]
     # GET
     def index
         @users = User.all
@@ -7,17 +9,14 @@ class UsersController < ApplicationController
 
     # POST
     def create
-        @users = User.new(params_user)
-        if @users.save
-            respond_to do |format|
-                format.json {render json: @users, status:201}
-            end
-        else
-            respond_to do |format|
-                format.json {render json: @users.errors, status:201}
-            end
-        end
+    @user = User.new(params_user)
+
+    if @user.save
+      render json: @user, status: :created, location: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
     end
+  end
 
     # Parametros recibidos para la creacion de un usuario nuevo
     # en el metodo create

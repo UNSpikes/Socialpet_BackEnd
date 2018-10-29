@@ -3,20 +3,23 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  name            :string(100)      not null
-#  last_name       :string(100)      not null
-#  age             :integer
-#  phone_number    :string(20)       not null
 #  additional_info :text(5000)
-#  country         :string(56)
+#  age             :integer
 #  city            :string(85)
-#  password        :string(16)       not null
+#  country         :string(56)
 #  email           :string(100)      not null
+#  last_name       :string(100)      not null
+#  name            :string(100)      not null
+#  password        :string(16)       not null
+#  password_digest :string
+#  phone_number    :string(20)       not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 
 class User < ApplicationRecord
+
+	has_secure_password
 
 	validates :name, :last_name,:phone_number, :password, :email, presence: true
 	validates :name, :last_name, length: { maximum: 100, too_long:"Pueden haber unicamente %´{count} caracteres" }
@@ -54,4 +57,9 @@ class User < ApplicationRecord
 		  .order(name: :asc, last_name: :asc)
 	end
 
+	def User.digest(string)
+	  cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+	                                                BCrypt::Engine.cost
+	  BCrypt::Password.create(string, cost: cost)
+	end
 end

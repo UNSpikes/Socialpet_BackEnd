@@ -17,6 +17,7 @@
 		country: Faker::Address.country,
 		city: Faker::Nation.capital_city,
 		password: Faker::Alphanumeric.alphanumeric(Faker::Number.between(6, 16)),
+		password_digest: BCrypt::Password.create('password'),
 		email: Faker::Internet.email
 	)
 end
