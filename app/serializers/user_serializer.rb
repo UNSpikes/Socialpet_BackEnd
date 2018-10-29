@@ -11,6 +11,7 @@
 #  last_name       :string(100)      not null
 #  name            :string(100)      not null
 #  password        :string(16)       not null
+#  password_digest :string
 #  phone_number    :string(20)       not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
