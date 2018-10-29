@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: %i[show update destroy]
+    before_action :authenticate_user, only: [:index, :show, :update, :destroy, :get_info]
 
     # GET /users
     def index
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
             render json: @user, include: []
         end
     end
+  end
 
     # POST
     def create
