@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     get 'num_of_dogs', to: 'users#num_of_dogs'
   end
 
+  patch '/users/updatepass/:id', to: 'users#updatepass'
+
   # Para certificados
   resources :certificados, except: [:destroy]
   delete '/certificados/delete/:id/:dog_id/:user_id', to: 'certificados#destroycertificado'

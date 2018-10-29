@@ -20,6 +20,9 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
+            # Envio email de forma asincronica
+            # Se deberia cambiar para produccion? 
+            UserMailer.with(user: @user).welcome_email.deliver_now
             render json: @user, include: []
         else
             render json: @user.errors
@@ -65,6 +68,24 @@ class UsersController < ApplicationController
         }
     end
 
+    # UPDATE: /users/updatepass/:id
+    def updatepass
+        @users = User.find( params[:id] )
+        if @users.update_attributes( user_params_pass )
+            # Envio email de forma asincronica
+            UserMailer.with(user: @users).updatepass_email.deliver_now
+
+            respond_to do |format|
+                format.json { render json: @users, status:200 }
+            end
+        else
+            respond_to do |format|
+                format.json { render json: @users.errors, status:200 }
+            end
+        end
+    end
+    
+
     private
 
     def set_user
@@ -72,7 +93,13 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
+        #params.require(:user).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
+        params.permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
+    end
+
+    # Para update password
+    def user_params_pass
+        params.permit( :password )
     end
 end
 
