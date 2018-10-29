@@ -72,8 +72,8 @@ class User < ApplicationRecord
 				user.name = data["name"]
 				user.last_name = ["last_name"]
 				user.email = data["email"]
+				user.phone_number = 1234567
 				user.password = data["google-authorized account"]
-				user.google_sign_up = true
 			end
 		end
 		return newUsr

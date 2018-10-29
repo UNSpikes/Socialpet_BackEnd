@@ -3,7 +3,7 @@ class GoogleTokenController < ApplicationController
 	before_action :authenticate
 
 	def create
-		render json: auth_token, status: :created
+		render json: auth_token
 	end
 
 	private
@@ -35,7 +35,7 @@ class GoogleTokenController < ApplicationController
 	end
 
 	def auth_params
-		params.require(:auth).permit :tokenId
+		params.require(:auth).permit( :tokenId )
 	end
 
 end

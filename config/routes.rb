@@ -1,11 +1,11 @@
  Rails.application.routes.draw do
 
+    #scope :google do 
+      post "login", to: "google_token#create"
+    #end
   scope :auth do
-    scope :google do 
-      post "token" => "google_user_token#create"
-    end
-    scope :sing_in do 
-      post 'token' => 'user_token#create'
+    scope :sign_in do 
+      post "token", to: "user_token#create"
     end
   end
     
