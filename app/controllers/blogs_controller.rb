@@ -20,7 +20,10 @@ class BlogsController < ApplicationController
     def create
         @blog = Blog.new(blog_params)
         if @blog.save
-            render json: @blog, include: []
+            # envio email
+            #@user = User.where( id: params[@blog.user_id] )
+            #UserMailer.with(user: @user, blog: @blog).welcome_email.deliver_now
+            render json: @user, include: []
         else
             render json: @blog.errors
         end
