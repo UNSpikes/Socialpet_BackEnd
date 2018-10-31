@@ -23,7 +23,9 @@ class UsersController < ApplicationController
             # Envio email de forma asincronica
             # Se deberia cambiar para produccion? 
             UserMailer.with(user: @user).welcome_email.deliver_now
-            render json: @user, include: []
+            respond_to do |format|
+                format.json {render json: @user, status:201}
+            end
         else
             render json: @user.errors
         end
