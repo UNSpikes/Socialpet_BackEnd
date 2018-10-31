@@ -1,7 +1,7 @@
  Rails.application.routes.draw do
 
-    #scope :google do 
-      post "login", to: "google_token#create"
+  post "login", to: "google_user_token#create"
+  post 'fb_create' => 'users#create_fb_user'
     #end
   scope :auth do
     scope :sign_in do 

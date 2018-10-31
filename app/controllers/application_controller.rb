@@ -5,5 +5,5 @@ class ApplicationController < ActionController::API
     # no se encuentra por default
     include ActionController::MimeResponds
     include Knock::Authenticable
-    
+
 end
