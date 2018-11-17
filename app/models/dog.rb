@@ -56,4 +56,8 @@ class Dog < ApplicationRecord
 		joins(:user).where("users.id" => user_id).count if user_id.present?
 	end
 
+	def self.numDogs()
+		select( :name ).count
+	end
+
 end

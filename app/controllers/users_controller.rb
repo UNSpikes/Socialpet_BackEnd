@@ -104,6 +104,16 @@ class UsersController < ApplicationController
         }
     end
 
+    # /users/countDogs
+    def countDogs
+        
+        contador = Dog.numDogs()
+        render json:{
+            contador: contador
+        }
+        
+    end
+
     # UPDATE: /users/updatepass/:id
     def updatepass
         @users = User.find( params[:id] )
