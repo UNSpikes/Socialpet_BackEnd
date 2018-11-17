@@ -1,4 +1,17 @@
-Rails.application.routes.draw do
+ Rails.application.routes.draw do
+
+  post "login", to: "google_user_token#create"
+  post 'fb_create' => 'users#create_fb_user'
+    #end
+  scope :auth do
+    scope :sign_in do 
+      post "token", to: "user_token#create"
+    end
+  end
+    
+ 
+
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :blog_tag_mediator
 

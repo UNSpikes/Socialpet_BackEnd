@@ -5,7 +5,7 @@
 #  id          :integer          not null, primary key
 #  content     :text(5000)       not null
 #  date        :datetime         not null
-#  image       :binary
+#  image       :string
 #  num_likes   :integer
 #  title       :string(100)      not null
 #  urlblog     :string(300)
