@@ -52,4 +52,9 @@ class User < ApplicationRecord
 		  .order(name: :asc, last_name: :asc)
 	end
 
+	# Sin probar
+	def getEmail( indexUser )
+		select.( :email ).where( id: indexUser  )
+	end
+
 end

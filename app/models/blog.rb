@@ -30,4 +30,15 @@ class Blog < ApplicationRecord
     has_many :tags, through: :blog_tag_mediators
     belongs_to :location, optional: true
     has_many :comment
+
+    def getUser( indexUser )
+        #User.where( id: indexUser )
+        #User.new( User.where( id: indexUser ) )
+        User.select( :id ).where( id: indexUser )
+    end
+
+    def getEmailUser( indexUser )
+        User.select( :email ).where( id: indexUser )
+    end
+
 end

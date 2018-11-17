@@ -21,11 +21,13 @@ class BlogsController < ApplicationController
         @blog = Blog.new(blog_params)
         if @blog.save
             # envio email
-            @user = User.where( id: @blog.user_id )
+            #@user = User.new @blog.getUser( @blog.user_id ).attributes.except('id')
+            #@user = @blog.getUser( @blog.user_id ).dup
+            #dogs = @user.get_dogs()
             #BlogMailer.with(user: @user, blog: @blog).blogcreate_email.deliver_now
             #BlogMailer.with(user: @user).blogcreate_email.deliver_now
             #BlogMailer.blogcreate_email( @user, @blog ).deliver_now
-            render json: @blog, include: []
+            render json: @blogs, include: []
         else
             render json: @blog.errors
         end
