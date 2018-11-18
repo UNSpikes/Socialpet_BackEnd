@@ -44,6 +44,8 @@
 
   resources :tags
 
+  get '/users/countDogs', to: 'users#countDogs'
+  
   resources :users do
     collection do
     end
