@@ -108,9 +108,10 @@ class UsersController < ApplicationController
     def countDogs
         
         contador = Dog.numDogs()
-        render json:{
-            contador: contador
-        }
+
+        respond_to do |format|
+            format.json { render json: contador, status:200 }
+        end
         
     end
 
