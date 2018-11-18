@@ -9,8 +9,8 @@
     end
   end
     
- 
-
+  # GET current user's data
+  get "users/current" => "users#current"
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :blog_tag_mediator
