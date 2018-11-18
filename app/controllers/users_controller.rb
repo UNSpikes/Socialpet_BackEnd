@@ -36,6 +36,12 @@ class UsersController < ApplicationController
         end
     end
 
+    require 'json'
+    def current
+        puts JSON.pretty_generate(current_user)
+        #info = [:name, :last_name, :age, :phone_number, :additional_info, :country, :city, :email]
+        #render json: current_user, fields: info, status:200
+    end
 
     def create_fb_user
         user = User.new(user_params)
@@ -97,7 +103,7 @@ class UsersController < ApplicationController
 
     # /users/:user_id/num_of_dogs
     def num_of_dogs
-        user_id = params[:user_id]
+        user_id = params[:id]
         num = Dog.num_dogs_by_user(user_id)
         render json: {
             num_of_dogs: num
