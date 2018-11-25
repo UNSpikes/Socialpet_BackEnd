@@ -8,6 +8,7 @@
 #  image       :string
 #  num_likes   :integer
 #  title       :string(100)      not null
+#  urlblog     :string(300)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  location_id :integer
@@ -32,6 +33,16 @@ class Blog < ApplicationRecord
 
     def get_tags()
         tags.select(:id, :tag_name)
+    end
+
+    def getUser( indexUser )
+        #User.where( id: indexUser )
+        #User.new( User.where( id: indexUser ) )
+        User.select( :id ).where( id: indexUser )
+    end
+
+    def getEmailUser( indexUser )
+        User.select( :email ).where( id: indexUser )
     end
 
 end

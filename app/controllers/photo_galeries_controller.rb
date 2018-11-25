@@ -31,7 +31,8 @@ class PhotoGaleriesController < ApplicationController
     # POST
     # Crea una nueva imagen y la asocia con un dog
     # Si esta asociada con un dog, no debe estar asociada con un blog
-    def createdogid
+    # /photo_galeries/addog/:dog_id
+    def create
         @photo_galeries = PhotoGalery.new(params_dog)
 
         if @photo_galeries.save
@@ -48,7 +49,8 @@ class PhotoGaleriesController < ApplicationController
 
     # Argumentos de createdogid
     def params_dog
-        params.permit( :image, :dog_id, :user_id)
+        params.requiere( :photo_galery ).permit( :image, :dog_id, :user_id, :blog_id )
+        #params.permit( :image, :dog_id, :user_id, :blog_id )
     end
 
     # DELETE

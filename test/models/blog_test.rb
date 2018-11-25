@@ -8,6 +8,7 @@
 #  image       :string
 #  num_likes   :integer
 #  title       :string(100)      not null
+#  urlblog     :string(300)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  location_id :integer

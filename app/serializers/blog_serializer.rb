@@ -8,6 +8,7 @@
 #  image       :string
 #  num_likes   :integer
 #  title       :string(100)      not null
+#  urlblog     :string(300)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  location_id :integer
@@ -20,7 +21,7 @@
 #
 
 class BlogSerializer < ActiveModel::Serializer
-  attributes :id, :title, :date, :content, :num_likes, :image, :location_id, :user_id
+  attributes :id, :title, :date, :content, :num_likes, :image, :location_id, :user_id, :urlblog
 
   belongs_to :user
   has_many :photo_galeries, as: :imageable

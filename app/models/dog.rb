@@ -31,7 +31,7 @@ class Dog < ApplicationRecord
 	belongs_to :user
     belongs_to :breed
     has_many :publications 
-    has_one :photo_galery
+    has_many :photo_galery, as: :imageable
     belongs_to :location, optional: true
 	has_many :likes
 	has_many :certificados
@@ -54,6 +54,11 @@ class Dog < ApplicationRecord
 
 	def self.num_dogs_by_user(user_id)
 		joins(:user).where("users.id" => user_id).count if user_id.present?
+	end
+
+	def self.numDogs()
+		Dog.group( :user_id ).count
+		#Dog.find_by_sql( " SELECT COUNT(*) AS count_all, "dogs"."user_id" AS dogs_user_id FROM "dogs" GROUP BY "dogs"."user_id" " )
 	end
 
 end

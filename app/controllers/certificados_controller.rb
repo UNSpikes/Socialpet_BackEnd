@@ -23,7 +23,8 @@ class CertificadosController < ApplicationController
 
     # Parametros que se reciben para "create" un nuevo certificado
     def params_certificados
-        params.permit( :ruta, :tipo, :dog_id, :user_id )
+        params.requiere( :certificado ).permit( :ruta, :tipo, :dog_id, :user_id )
+        #params.permit( :ruta, :tipo, :dog_id, :user_id )
     end
 
     # GET show por id del certificado
