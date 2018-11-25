@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
 
     # GET /blogs
     def index
-        @blogs = Blog.all
+        @blogs = Blog.order(date: :desc).all
         render json: @blogs, include: []
     end
 
@@ -29,7 +29,7 @@ class BlogsController < ApplicationController
     # PATCH/PUT
     def update
         if @blog.update(blog_params)
-            render json: @blog, include: []
+            render json: @blog, include: [:tags]
         else
             render json: @blog.errors
         end
@@ -42,6 +42,16 @@ class BlogsController < ApplicationController
         else
             render json: @blog.errors
         end
+    end
+
+    # /blogs/:blog_id/info/
+    def get_info
+        blog = Blog.find(params[:blog_id])
+        tags = blog.get_tags()
+        render json: {
+            blog: blog,
+            tags: tags
+        }
     end
 
     private

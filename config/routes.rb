@@ -1,5 +1,7 @@
  Rails.application.routes.draw do
 
+  get 'status', to: "application#server_status"
+
     #scope :google do 
       post "login", to: "google_token#create"
     #end
@@ -15,7 +17,9 @@
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :blog_tag_mediator
 
-  resources :blogs
+  resources :blogs do
+    get 'info', to: 'blogs#get_info'
+  end
 
   resources :breeds do
     get 'num_of_dogs', to: 'breeds#num_of_dogs'

@@ -6,4 +6,11 @@ class ApplicationController < ActionController::API
     include ActionController::MimeResponds
     include Knock::Authenticable
     
+    def server_status
+        status = "OK"
+        render json: {
+            status: status
+        }
+    end
+ 
 end
