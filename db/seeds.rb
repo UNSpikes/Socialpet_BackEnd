@@ -17,7 +17,7 @@
 		additional_info: Faker::BackToTheFuture.quote,
 		country: Faker::Address.country,
 		city: Faker::Nation.capital_city,
-		password: password,
+		password_digest: password,
 		password_confirmation: password,
 		email: Faker::Internet.email
 	)
@@ -32,7 +32,7 @@ User.create(
 	country: 'Colombia',
 	city: 'Bogota',
 	email: 'user@test.com',
-	password: 'password',
+	password_digest: 'password',
 	password_confirmation: 'password'
 )
 
