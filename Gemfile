@@ -12,6 +12,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
+gem "loofah", ">= 2.2.3"
 # gem 'mini_racer', platforms: :ruby
 gem 'faker', :git => 'https://github.com/stympy/faker.git'
 # Use CoffeeScript for .coffee assets and views
@@ -30,6 +31,7 @@ gem 'omniauth-google-oauth2'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'rack-cors', require: 'rack/cors'
+gem "rack", ">= 2.0.6"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'httparty'
@@ -74,8 +76,6 @@ group :production do
   # es la que maneja Heroku
   gem 'pg'
 end
-
-gem 'rack-cors', require: 'rack/cors'
 
 # Para Cargar archivos carrierwave
 gem 'carrierwave', '~> 1.0'

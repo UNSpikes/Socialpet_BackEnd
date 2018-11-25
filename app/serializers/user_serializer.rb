@@ -10,14 +10,14 @@
 #  email           :string(100)      not null
 #  last_name       :string(100)      not null
 #  name            :string(100)      not null
-#  password_digest :string(16)
+#  password_digest :string(16)       not null
 #  phone_number    :string(20)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email
+  attributes :id, :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password_digest, :email
   
   has_many :dogs
   has_many :blogs

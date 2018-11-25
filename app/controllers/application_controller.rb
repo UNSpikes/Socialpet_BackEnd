@@ -5,5 +5,12 @@ class ApplicationController < ActionController::API
     # no se encuentra por default
     include ActionController::MimeResponds
     include Knock::Authenticable
-
+    
+    def server_status
+        status = "OK"
+        render json: {
+            status: status
+        }
+    end
+ 
 end

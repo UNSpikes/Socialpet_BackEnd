@@ -29,7 +29,11 @@ class Blog < ApplicationRecord
     has_many :blog_tag_mediators
     has_many :tags, through: :blog_tag_mediators
     belongs_to :location, optional: true
-    has_many :comment
+    has_many :comments
+
+    def get_tags()
+        tags.select(:id, :tag_name)
+    end
 
     def getUser( indexUser )
         #User.where( id: indexUser )

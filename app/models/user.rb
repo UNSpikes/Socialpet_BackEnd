@@ -10,7 +10,7 @@
 #  email           :string(100)      not null
 #  last_name       :string(100)      not null
 #  name            :string(100)      not null
-#  password_digest :string(16)
+#  password_digest :string(16)       not null
 #  phone_number    :string(20)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -20,20 +20,21 @@ class User < ApplicationRecord
 
 	has_secure_password
 
-	validates :name, :last_name,:phone_number, :password, :email, presence: true
+	validates :name, :last_name,:phone_number, :password_digest, :email, presence: true
 	validates :name, :last_name, length: { maximum: 100, too_long:"Pueden haber unicamente %´{count} caracteres" }
 	validates :age, length: { in: 1..3,too_long: "Se permiten máximo %´{count} caracteres" }
 	validates :phone_number, length: { maximum: 20, too_long: "Se permiten máximo %´{count} caracteres" }
 	validates :additional_info, length: { maximum: 5000, too_long: "Se permiten máximo %´{count} caracteres" }
 	validates :country, length: { maximum: 56, too_long: "Se permiten máximo %´{count} caracteres" }
 	validates :city, length: { maximum: 85, too_long: "Se permiten máximo %´{count} caracteres" }
-	#validates :password, length: { in: 6..16, wrong_lenght: "Se permiten máximo %´{count} caracteres" }
+	validates :password, length: { maximum: 16, too_long:"Pueden haber unicamente %´{count} caracteres" }
 	validates :email, uniqueness: true
   	validates :email, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
 	has_many :dogs
     has_many :blogs
 	has_many :comments
 	has_one :preference
+	has_many :photo_galery, as: :imageable
 
 	def self.items(p, per_p)
 		paginate(page: p, per_page: per_p)

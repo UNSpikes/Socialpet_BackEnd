@@ -14,10 +14,10 @@
 		last_name: Faker::Name.last_name,
 		age: Faker::Number.between(10, 100),
 		phone_number: Faker::PhoneNumber.cell_phone,
-		additional_info: Faker::BackToTheFuture.quote,
+		additional_info: Faker::Movies::BackToTheFuture.quote,
 		country: Faker::Address.country,
 		city: Faker::Nation.capital_city,
-		password: password,
+		password_digest: password,
 		password_confirmation: password,
 		email: Faker::Internet.email
 	)
@@ -32,13 +32,13 @@ User.create(
 	country: 'Colombia',
 	city: 'Bogota',
 	email: 'user@test.com',
-	password: 'password',
+	password_digest: 'password',
 	password_confirmation: 'password'
 )
 
-10.times do 
+123.times do 
 	Breed.create(
-		breed_type: Faker::Dog.unique.breed
+		breed_type: Faker::Creature::Dog.unique.breed
 	)
 end
 
@@ -52,12 +52,12 @@ end
 
 10.times do 
 	Dog.create(
-		name: Faker::Dog.name,
+		name: Faker::Creature::Dog.name,
 		age: Faker::Number.between(0,20),
 		sex: "M",
-		description: Faker::Friends.unique.quote,
+		description: Faker::TvShows::Friends.unique.quote,
 		interests: Faker::Number.between(0,9),
-		breed_id: Faker::Number.between(1,10),
+		breed_id: Faker::Number.between(1,123),
 		user_id: Faker::Number.between(1,11),
 		location_id: Faker::Number.between(1,10)
 	)
@@ -65,8 +65,8 @@ end
 
 until Blog.count == 10 do
 	Blog.create(
-		title: Faker::VForVendetta.unique.quote,
-		content: Faker::VForVendetta.speech,
+		title: Faker::Movies::VForVendetta.quote,
+		content: Faker::Movies::VForVendetta.speech,
 		image: Faker::Alphanumeric.alphanumeric(20),
 		date: Faker::Time.backward(10),
 		num_likes: Faker::Number.between(0,300),
@@ -82,16 +82,28 @@ end
 	)
 end
 
-10.times do
+22.times do
 	Tag.create(
 		tag_name: Faker::Commerce.unique.department(1,false)
 	)
 end 
 
-10.times do
+Tag.create(
+	tag_name: 'Alimentacion'
+)
+
+Tag.create(
+	tag_name: 'Cuidados'
+)
+
+Tag.create(
+	tag_name: 'Veterinaria'
+)
+
+20.times do
 	BlogTagMediator.create(
 		blog_id: Faker::Number.between(1,10),
-		tag_id: Faker::Number.between(1,10)
+		tag_id: Faker::Number.between(1,25)
 	)
 end
 

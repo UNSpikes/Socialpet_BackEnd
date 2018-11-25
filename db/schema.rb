@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(version: 2018_10_29_035058) do
     t.text "additional_info", limit: 5000
     t.string "country", limit: 56
     t.string "city", limit: 85
-    t.string "password_digest", limit: 16
+    t.string "password_digest", limit: 16, null: false
     t.string "email", limit: 100, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -2,7 +2,7 @@ require 'fb_token'
 
 class UsersController < ApplicationController
     before_action :set_user, only: %i[show update destroy]
-    before_action :authenticate_user, only: [ :update, :destroy, :get_info]
+    #before_action :authenticate_user, only: [ :index, :show, :update, :destroy, :get_info]
 
     # GET /users
     def index
@@ -25,13 +25,13 @@ class UsersController < ApplicationController
         if @user.save
             # Envio email de forma asincronica
             # Se deberia cambiar para produccion? 
-            UserMailer.with(user: @user).welcome_email.deliver_now
+            # UserMailer.with(user: @user).welcome_email.deliver_now
             respond_to do |format|
                 format.json {render json: @user, status:201}
             end
         else
             respond_to do |format|
-                format.json { render json: user.errors, status: :unprocessable_entity }
+                format.json { render json: @user.errors, status: :unprocessable_entity }
             end
         end
     end
@@ -112,7 +112,6 @@ class UsersController < ApplicationController
 
     # /users/countDogs
     def countDogs
-        
         contador = Dog.numDogs()
 
         respond_to do |format|
@@ -146,13 +145,13 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        #params.require(:user).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
+        #params.require( :user ).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
         params.permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
     end
 
     # Para update password
     def user_params_pass
-        params.permit( :password )
+        params.permit( :password_digest )
     end
 
 end

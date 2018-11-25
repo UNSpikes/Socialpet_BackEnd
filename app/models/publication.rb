@@ -18,5 +18,5 @@
 
 class Publication < ApplicationRecord
     belongs_to :dog, optional: true
-    has_many :comment
+    has_many :comments
 end

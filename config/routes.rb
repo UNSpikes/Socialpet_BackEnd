@@ -1,5 +1,7 @@
  Rails.application.routes.draw do
 
+    #scope :google do 
+      post "login", to: "google_token#create"
   post "login", to: "google_user_token#create"
   post 'fb_create' => 'users#create_fb_user'
     #end
@@ -15,7 +17,9 @@
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :blog_tag_mediator
 
-  resources :blogs
+  resources :blogs do
+    get 'info', to: 'blogs#get_info'
+  end
 
   resources :breeds do
     get 'num_of_dogs', to: 'breeds#num_of_dogs'
@@ -30,18 +34,8 @@
   resources :locations
 
   # Para photo_galeries
-  resources :photo_galeries, only: [:index, :show, :destroy]
-  # con dog
-  get '/photo_galeries/showdogid/:dog_id/:user_id', to: 'photo_galeries#showdogid'
-  post '/photo_galeries/:image/:dog_id/:user_id', to: 'photo_galeries#createdogid'
-  delete '/photo_galeries/:dog_id/:user_id', to: 'photo_galeries#destroydogidall'
-  #delete '/photo_galeries/:id', to: 'photo_galeries#destroydogid'
-  # con blog
-  get '/photo_galeries/showblogid/:id/:blog_id', to: 'photo_galeries#showblogid'
-  get '/photo_galeries/showblogid/:blog_id', to: 'photo_galeries#showblogidall'
-  post '/photo_galeries/:image/:blog_id', to: 'photo_galeries#createblogid'
-  delete '/photo_galeries/:blog_id', to: 'photo_galeries#destroyblogid'
-
+  resources :photo_galeries
+  
   resources :tags
 
   get '/users/countDogs', to: 'users#countDogs'

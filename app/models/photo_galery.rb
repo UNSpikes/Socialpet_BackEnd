@@ -20,8 +20,11 @@
 #
 
 class PhotoGalery < ApplicationRecord
-    validates :image, presence: true, length: {maximum: 200}
-    
+    validates :image, presence: true #, length: {maximum: 200}
+    # con esa linea se representa la asociacion con las tablas dogs, users y blogs
+    # donde un solo dog, user o blog tiene muchas imagenes
     belongs_to :imageable, polymorphic: true, optional: true
-    belongs_to :dog, optional: true
+
+    # carrier para cargar la imagen
+    mount_uploader :image, ImageUploader
 end
