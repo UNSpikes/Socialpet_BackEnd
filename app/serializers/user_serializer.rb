@@ -10,7 +10,7 @@
 #  email           :string(100)      not null
 #  last_name       :string(100)      not null
 #  name            :string(100)      not null
-#  password_digest :string(16)
+#  password_digest :string(16)       not null
 #  phone_number    :string(20)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

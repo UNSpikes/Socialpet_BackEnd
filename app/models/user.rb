@@ -10,7 +10,7 @@
 #  email           :string(100)      not null
 #  last_name       :string(100)      not null
 #  name            :string(100)      not null
-#  password_digest :string(16)
+#  password_digest :string(16)       not null
 #  phone_number    :string(20)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -27,7 +27,7 @@ class User < ApplicationRecord
 	validates :additional_info, length: { maximum: 5000, too_long: "Se permiten máximo %´{count} caracteres" }
 	validates :country, length: { maximum: 56, too_long: "Se permiten máximo %´{count} caracteres" }
 	validates :city, length: { maximum: 85, too_long: "Se permiten máximo %´{count} caracteres" }
-	validates :password_digest, length: { maximum: 16, too_long:"Pueden haber unicamente %´{count} caracteres" }
+	validates :password, length: { maximum: 16, too_long:"Pueden haber unicamente %´{count} caracteres" }
 	validates :email, uniqueness: true
   	validates :email, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
 	has_many :dogs

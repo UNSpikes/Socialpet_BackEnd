@@ -65,7 +65,7 @@ end
 
 until Blog.count == 10 do
 	Blog.create(
-		title: Faker::Movies::VForVendetta.unique.quote,
+		title: Faker::Movies::VForVendetta.quote,
 		content: Faker::Movies::VForVendetta.speech,
 		image: Faker::Alphanumeric.alphanumeric(20),
 		date: Faker::Time.backward(10),

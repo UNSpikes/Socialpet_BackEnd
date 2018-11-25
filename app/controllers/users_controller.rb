@@ -25,7 +25,7 @@ class UsersController < ApplicationController
         if @user.save
             # Envio email de forma asincronica
             # Se deberia cambiar para produccion? 
-            UserMailer.with(user: @user).welcome_email.deliver_now
+            # UserMailer.with(user: @user).welcome_email.deliver_now
             respond_to do |format|
                 format.json {render json: @user, status:201}
             end
@@ -145,8 +145,8 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.requiere( :user ).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password_digest, :email )
-        #params.permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password_digest, :email )
+        #params.require( :user ).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
+        params.permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
     end
 
     # Para update password
