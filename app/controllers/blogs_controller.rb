@@ -22,7 +22,8 @@ class BlogsController < ApplicationController
         if @blog.save
             # envio email
             #@user = User.new @blog.getUser( @blog.user_id ).attributes.except('id')
-            #@user = @blog.getUser( @blog.user_id ).dup
+            @user = @blog.getUser( @blog.user_id ).dup
+            #@blog.user.email
             #dogs = @user.get_dogs()
             #BlogMailer.with(user: @user, blog: @blog).blogcreate_email.deliver_now
             #BlogMailer.with(user: @user).blogcreate_email.deliver_now

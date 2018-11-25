@@ -31,7 +31,7 @@ class UsersController < ApplicationController
             end
         else
             respond_to do |format|
-                format.json { render json: user.errors, status: :unprocessable_entity }
+                format.json { render json: @user.errors, status: :unprocessable_entity }
             end
         end
     end
@@ -112,7 +112,6 @@ class UsersController < ApplicationController
 
     # /users/countDogs
     def countDogs
-        
         contador = Dog.numDogs()
 
         respond_to do |format|
@@ -146,13 +145,12 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        #params.require(:user).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
-        params.permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
+        params.permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password_digest, :email )
     end
 
     # Para update password
     def user_params_pass
-        params.permit( :password )
+        params.permit( :password_digest )
     end
 
 end
