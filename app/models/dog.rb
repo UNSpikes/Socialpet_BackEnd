@@ -31,7 +31,7 @@ class Dog < ApplicationRecord
 	belongs_to :user
     belongs_to :breed
     has_many :publications 
-    has_one :photo_galery
+    has_many :photo_galery, as: :imageable
     belongs_to :location, optional: true
 	has_many :likes
 	has_many :certificados

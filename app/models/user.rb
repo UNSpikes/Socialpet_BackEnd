@@ -34,6 +34,7 @@ class User < ApplicationRecord
     has_many :blogs
 	has_many :comments
 	has_one :preference
+	has_many :photo_galery, as: :imageable
 
 	def self.items(p, per_p)
 		paginate(page: p, per_page: per_p)

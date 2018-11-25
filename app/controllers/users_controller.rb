@@ -145,7 +145,8 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password_digest, :email )
+        params.requiere( :user ).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password_digest, :email )
+        #params.permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password_digest, :email )
     end
 
     # Para update password
