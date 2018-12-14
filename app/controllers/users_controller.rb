@@ -136,7 +136,7 @@ class UsersController < ApplicationController
             end
         end
     end
-    
+
 
     private
 
@@ -151,7 +151,7 @@ class UsersController < ApplicationController
 
     # Para update password
     def user_params_pass
-        params.permit( :password_digest )
+        params.permit( :password )
     end
 
 end
