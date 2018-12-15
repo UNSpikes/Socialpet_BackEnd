@@ -60,7 +60,7 @@ class BreedsController < ApplicationController
     end
 
     def breed_params
-        params.requiere(:breed).permit( :breed_type )
-        #params.permit( :breed_type )
+        #params.require(:breed).permit( :breed_type )
+        params.permit( :breed_type )
     end
 end
