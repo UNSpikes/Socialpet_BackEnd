@@ -18,11 +18,10 @@ class PhotoGaleriesController < ApplicationController
 
     # GET
     # Busqueda las fotografias de un perro
-    # recibe el identificador unico del perro que esta compuesto
-    # por id del perro y de su dueno
-    # deberia retornar una, pero aun no es asi, ya que se pueden insertar varias
+    # recibe el identificador unico del perro
+    # photo_galeries/showdogid/:dog_id
     def showdogid
-        @photo_galeries = PhotoGalery.where( dog_id: params[:dog_id], user_id: params[:user_id] )
+        @photo_galeries = PhotoGalery.where( dog_id: params[:dog_id] )
         respond_to do |format|
             format.json { render json: @photo_galeries, status:200 }
         end
@@ -47,17 +46,18 @@ class PhotoGaleriesController < ApplicationController
         
     end
 
-    # Argumentos de createdogid
+    # Argumentos de crear foto
     def params_dog
-        params.requiere( :photo_galery ).permit( :image, :dog_id, :user_id, :blog_id )
-        #params.permit( :image, :dog_id, :user_id, :blog_id )
+        #params.require( :photo_galery ).permit( :image, :dog_id, :user_id, :blog_id )
+        params.permit( :image, :dog_id, :user_id, :blog_id )
     end
 
     # DELETE
     # Elimina todas las imagenes de un perro
     # Solo deberia ser una, si solo se guarda la foto de perfil
+    # photo_galeries/destroydogidall/:dog_id
     def destroydogidall
-        @photo_galeries = PhotoGalery.where( dog_id: params[:dog_id], user_id: params[:user_id] )
+        @photo_galeries = PhotoGalery.where( dog_id: params[:dog_id] )
 
         if @photo_galeries.destroy_all
             respond_to do |format|
@@ -71,7 +71,8 @@ class PhotoGaleriesController < ApplicationController
     end
     
     # DELETE
-    # Elimina una imagen 
+    # Elimina una imagen
+    # photo_galeries/:id
     def destroy
         @photo_galeries = PhotoGalery.find(params[:id])
 
