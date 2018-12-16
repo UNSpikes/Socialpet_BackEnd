@@ -44,6 +44,7 @@ class BreedsController < ApplicationController
         end
     end
 
+    # Retorna el numero de perros que existen en la breed_id
     # /breeds/:breed_id/num_of_dogs
     def num_of_dogs
         breed_id = params[:breed_id]
@@ -60,7 +61,7 @@ class BreedsController < ApplicationController
     end
 
     def breed_params
-        params.requiere(:breed).permit( :breed_type )
-        #params.permit( :breed_type )
+        #params.require(:breed).permit( :breed_type )
+        params.permit( :breed_type )
     end
 end
