@@ -1,5 +1,6 @@
 class DogsController < ApplicationController
     before_action :set_dog, only: %i[show update destroy]
+    before_action :authenticate_user, only: [ :index, :show, :create, :update, :destroy ]
 
     # GET /dogs
     def index
