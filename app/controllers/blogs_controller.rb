@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
     before_action :set_blog, only: %i[show update destroy]
-    before_action :authenticate_user, only: [ :index, :show, :create, :update, :destroy ]
+    #before_action :authenticate_user, only: [ :index, :show, :create, :update, :destroy ]
 
     # GET /blogs
     def index
