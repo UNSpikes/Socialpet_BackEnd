@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
     before_action :set_blog, only: %i[show update destroy]
-    #before_action :authenticate_user, only: [ :index, :show, :create, :update, :destroy ]
+    before_action :authenticate_user, only: [ :index, :show, :create, :update, :destroy ]
 
     # GET /blogs
     def index
@@ -70,7 +70,7 @@ class BlogsController < ApplicationController
     end
 
     def blog_params
-        params.require(:blog).permit(:title, :content, :image, :date, :num_likes, :user_id, :location_id)
-        #params.permit(:title, :content, :image, :date, :num_likes, :user_id, :location_id, :urlblog)
+        #params.require(:blog).permit(:title, :content, :image, :date, :num_likes, :user_id, :location_id)
+        params.permit(:title, :content, :image, :date, :num_likes, :user_id, :location_id, :urlblog)
     end
 end

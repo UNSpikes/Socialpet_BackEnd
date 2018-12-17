@@ -31,6 +31,9 @@ class Blog < ApplicationRecord
     belongs_to :location, optional: true
     has_many :comments
 
+    # carrier para cargar la imagen
+    mount_uploader :image, ImageUploader
+
     def get_tags()
         tags.select(:id, :tag_name)
     end
