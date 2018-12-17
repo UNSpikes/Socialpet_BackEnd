@@ -42,7 +42,7 @@
   resources :tags
 
   get '/users/countDogs', to: 'users#countDogs'
-  
+  get '/users/getallimagesmypet/:id', to: 'users#getallimagesmypet'
   resources :users do
     collection do
     end

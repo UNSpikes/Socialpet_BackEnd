@@ -139,6 +139,15 @@ class UsersController < ApplicationController
         end
     end
 
+    # Retorna todas las imagenes de todas las macotas de un usuario
+    # GET: /user/:id/getallimages
+    def getallimagesmypet()
+        @users = User.find( params[:id] )
+        img = Dog.img_dogs_my_user( @users.id )
+        render json:{
+            all_img: img
+        }
+    end
 
     private
 

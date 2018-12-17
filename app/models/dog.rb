@@ -56,4 +56,8 @@ class Dog < ApplicationRecord
 		joins(:user).where("users.id" => user_id).count if user_id.present?
 	end
 
+	def self.img_dogs_my_user(user_id)
+		Dog.find_by_sql( "SELECT photo_galeries.id, photo_galeries.image FROM dogs INNER JOIN users ON users.id = dogs.user_id INNER JOIN photo_galeries ON dogs.id = photo_galeries.dog_id WHERE users.id = " + user_id.to_s )
+	end
+
 end
