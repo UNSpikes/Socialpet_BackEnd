@@ -56,4 +56,7 @@
   resources :certificados, except: [:destroy]
   delete '/certificados/delete/:id/:dog_id/:user_id', to: 'certificados#destroycertificado'
   delete '/certificados/deleteall/:dog_id/:user_id', to: 'certificados#destroyall'
+  
+  root 'home#index'
+  get  'auth' => 'home#auth'
 end
