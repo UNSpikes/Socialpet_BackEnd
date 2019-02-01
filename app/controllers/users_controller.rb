@@ -2,7 +2,6 @@ require 'fb_token'
 
 class UsersController < ApplicationController
     before_action :authenticate_user, only: [:index, :show, :update, :destroy, :get_info]
-    before_action :set_user, only: [:index, :show, :update, :destroy, :get_info]
 
     # GET /users
     def index
@@ -150,10 +149,6 @@ class UsersController < ApplicationController
     end
 
     private
-
-    def set_user
-        @user = User.find(params[:id])
-    end
 
     def user_params
         #params.require( :user ).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
