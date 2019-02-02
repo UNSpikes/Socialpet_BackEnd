@@ -35,9 +35,10 @@ class UsersController < ApplicationController
         end
     end
 
-    require 'json'
     def current
-        render json: current_user
+        respond_to do |format|
+            format.json { render json: current_user, status:200 } 
+        end
     end
 
     def create_fb_user
