@@ -68,7 +68,6 @@ class User < ApplicationRecord
 	require 'json'
 
 
-
 	def self.create_google_user(data)
 	    if User.exists?(email: data['email'])
                 puts "ALREADY EXISTS"
@@ -84,5 +83,9 @@ class User < ApplicationRecord
 	    end
 	    
 	end
+
+	def self.from_token_payload payload
+		payload['sub']
+	  end
 
 end

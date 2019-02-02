@@ -1,6 +1,5 @@
 class BlogsController < ApplicationController
-    before_action :set_blog, only: %i[show update destroy]
-    before_action :authenticate_user, only: [ :index, :show, :create, :update, :destroy ]
+    before_action :authenticate_user, only: [:index, :show, :create, :update, :destroy]
 
     # GET /blogs
     def index
@@ -64,10 +63,6 @@ class BlogsController < ApplicationController
     end
 
     private
-
-    def set_blog
-        @blog = Blog.find(params[:id])
-    end
 
     def blog_params
         #params.require(:blog).permit(:title, :content, :image, :date, :num_likes, :user_id, :location_id)

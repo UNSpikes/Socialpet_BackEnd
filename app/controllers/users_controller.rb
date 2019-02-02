@@ -1,8 +1,7 @@
 require 'fb_token'
 
 class UsersController < ApplicationController
-    before_action :set_user, only: %i[show update destroy]
-    before_action :authenticate_user, only: [ :index, :show, :update, :destroy, :get_info]
+    before_action :authenticate_user, only: [ :index, :show, :update, :destroy, :get_info, :updateinfo ]
 
     # GET /users
     def index
@@ -149,11 +148,22 @@ class UsersController < ApplicationController
         }
     end
 
-    private
-
-    def set_user
-        @user = User.find(params[:id])
+    # UPDATE: /users/updateinfo/:id
+    # Permite editar el campo additional_info
+    def updateinfo
+        @users = User.find( params[:id] )
+        if @users.update_attribute( 'additional_info', params[:additional_info] )
+            respond_to do |format|
+                format.json { render json: @users, status:200 }
+            end
+        else
+            respond_to do |format|
+                format.json { render json: @users.errors, status:200 }
+            end
+        end
     end
+
+    private
 
     def user_params
         #params.require( :user ).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
