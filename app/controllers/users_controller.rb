@@ -37,9 +37,7 @@ class UsersController < ApplicationController
 
     require 'json'
     def current
-        puts JSON.pretty_generate(current_user)
-        #info = [:name, :last_name, :age, :phone_number, :additional_info, :country, :city, :email]
-        #render json: current_user, fields: info, status:200
+        render json: current_user
     end
 
     def create_fb_user
@@ -166,7 +164,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        #params.require( :user ).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
+        #params.require( :user ).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password_digest, :email )
         params.permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
     end
 
