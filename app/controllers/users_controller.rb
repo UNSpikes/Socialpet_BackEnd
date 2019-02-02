@@ -1,7 +1,7 @@
 require 'fb_token'
 
 class UsersController < ApplicationController
-    before_action :authenticate_user, only: [ :index, :show, :update, :destroy, :get_info, :updateinfo ]
+    before_action :authenticate_user, only: [ :index, :show, :update, :destroy, :get_info, :updateinfo, :current ]
 
     # GET /users
     def index
@@ -38,9 +38,7 @@ class UsersController < ApplicationController
     # GET: /users/current(.:format)
     # Retona el usuario actual
     def current
-        respond_to do |format|
-            format.json { render json: current_user, status:200 } 
-        end
+        render json: current_user
     end
 
     def create_fb_user
