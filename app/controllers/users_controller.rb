@@ -35,6 +35,8 @@ class UsersController < ApplicationController
         end
     end
 
+    # GET: /users/current(.:format)
+    # Retona el usuario actual
     def current
         respond_to do |format|
             format.json { render json: current_user, status:200 } 
