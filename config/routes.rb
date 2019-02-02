@@ -51,6 +51,7 @@
   end
 
   patch '/users/updatepass/:id', to: 'users#updatepass'
+  patch '/users/updateinfo/:id', to: 'users#updateinfo'
 
   # Para certificados
   resources :certificados, except: [:destroy]
