@@ -2,7 +2,7 @@ require 'fb_token'
 
 class UsersController < ApplicationController
     before_action :set_user, only: %i[show update destroy]
-    #before_action :authenticate_user, only: [ :index, :show, :update, :destroy, :get_info]
+    before_action :authenticate_user, only: [ :index, :show, :update, :destroy, :current]
 
     # GET /users
     def index
@@ -38,9 +38,7 @@ class UsersController < ApplicationController
 
     require 'json'
     def current
-        puts JSON.pretty_generate(current_user)
-        #info = [:name, :last_name, :age, :phone_number, :additional_info, :country, :city, :email]
-        #render json: current_user, fields: info, status:200
+        render json: current_user
     end
 
     def create_fb_user
@@ -145,7 +143,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        #params.require( :user ).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
+        #params.require( :user ).permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password_digest, :email )
         params.permit( :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password, :email )
     end
 

@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
     before_action :set_blog, only: %i[show update destroy]
+    before_action :authenticate_user, except: %i[index show get_info]
 
     # GET /blogs
     def index
