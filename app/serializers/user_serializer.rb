@@ -17,8 +17,11 @@
 #
 
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password_digest, :email
-  
+  # attributes :id, :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :password_digest, :email
+  # se retira password_digest por que presenta problemas en heroku aunque todo funciona bien de 
+  # forma local
+  attributes :id, :name, :last_name, :age, :phone_number, :additional_info, :country, :city, :email
+
   has_many :dogs
   has_many :blogs
 	has_many :comments

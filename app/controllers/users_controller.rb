@@ -99,6 +99,7 @@ class UsersController < ApplicationController
         }
     end
 
+    # Retorna cuantos perros tiene un usuario
     # /users/:user_id/num_of_dogs
     def num_of_dogs
         user_id = params[:id]
@@ -108,12 +109,13 @@ class UsersController < ApplicationController
         }
     end
 
+    # Retorna cuantos perros de cada raza hay en la aplicacion
     # /users/countDogs
     def countDogs
-        contador = Dog.numDogs()
-
+        contador = Breed.num_dogs_by_all_breeds()
+        
         respond_to do |format|
-            format.json { render json: contador, status:200 }
+            format.json { render json:  contador, status:200 }
         end
         
     end
@@ -134,7 +136,16 @@ class UsersController < ApplicationController
             end
         end
     end
-    
+
+    # Retorna todas las imagenes de todas las macotas de un usuario
+    # GET: /user/:id/getallimages
+    def getallimagesmypet()
+        @users = User.find( params[:id] )
+        img = Dog.img_dogs_my_user( @users.id )
+        render json:{
+            all_img: img
+        }
+    end
 
     private
 
@@ -149,7 +160,7 @@ class UsersController < ApplicationController
 
     # Para update password
     def user_params_pass
-        params.permit( :password_digest )
+        params.permit( :password )
     end
 
 end

@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
 	has_secure_password
 
-	validates :name, :last_name,:phone_number, :password_digest, :email, presence: true
+	validates :name, :last_name,:phone_number, :password, :email, presence: true
 	validates :name, :last_name, length: { maximum: 100, too_long:"Pueden haber unicamente %´{count} caracteres" }
 	validates :age, length: { in: 1..3,too_long: "Se permiten máximo %´{count} caracteres" }
 	validates :phone_number, length: { maximum: 20, too_long: "Se permiten máximo %´{count} caracteres" }

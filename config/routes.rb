@@ -35,11 +35,14 @@
 
   # Para photo_galeries
   resources :photo_galeries
-  
+  get 'photo_galeries/showdogid/:dog_id', to: 'photo_galeries#showdogid'
+  delete 'photo_galeries/destroydogidall/:dog_id', to: 'photo_galeries#destroydogidall'
+
+  #Para Tags
   resources :tags
 
   get '/users/countDogs', to: 'users#countDogs'
-  
+  get '/users/getallimagesmypet/:id', to: 'users#getallimagesmypet'
   resources :users do
     collection do
     end
